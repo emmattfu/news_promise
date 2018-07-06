@@ -1,6 +1,8 @@
 // init Auth
 const auth = new Auth();
 
+const ui = new LoginUi();
+
 // init elements
 const form = document.forms['login-form'];
 const email = form.elements['email'];
@@ -19,13 +21,14 @@ registerBtn.addEventListener('click', createAccount);
 
 function onLogin(e) {
     e.preventDefault();
+    if (!email.value || !password.value) return ui.showError('Please fill in all the lines');
     if (email.value && password.value) {
         auth.login (email.value, password.value )
             .then(() => window.location = 'index.html')
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                console.log(errorCode, errorMessage)
+                ui.showError(errorMessage);
             })
     }
 }

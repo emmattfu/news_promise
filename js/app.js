@@ -50,16 +50,17 @@ function onChangeCountry(e) {
     httpNew.get(`https://newsapi.org/v2/sources?apiKey=${apiKey}`)
         .then(data => {
             let sourcesArr = ['bloomberg', 'espn', 'marca', 'mtv-news', 'new-york-magazine', 'the-new-york-times', 'the-guardian-uk', 'svenska-dagbladet', 'la-gaceta', 'google-news'];
-            let sourcesArrCounter = 0;
            data.sources.forEach(source => {
-               if (source.id === sourcesArr[sourcesArrCounter]) {
-                   select2.appendChild(new Option(source.name, source.id));
-                   sourcesArrCounter++;
+               for (let i = 0; i < sourcesArr.length; i++) {
+                   if (source.id === sourcesArr[i]) {
+                       select2.appendChild(new Option(source.name, source.id));
+                   }
                }
                $(document).ready(function(){
                    $('select').formSelect();
                })
            });
+
         })
         .catch(err => ui.showError(err));
 })();
