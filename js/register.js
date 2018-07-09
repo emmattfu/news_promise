@@ -22,13 +22,13 @@ function onRegister(e) {
         auth.register(email.value, password.value)
             .then(() => window.location = 'index.html')
             .catch(error => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                let errorMessage = error.message;
                 ui.showError(errorMessage);
             })
     }
 }
 
-function backToLogin() {
+function backToLogin(e) {
+    e.returnValue = false;
     window.location = 'login.html'
 }

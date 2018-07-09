@@ -9,6 +9,7 @@ const email = form.elements['email'];
 const password = form.elements['password'];
 const registerBtn = document.querySelector('.register-btn');
 
+
 // check auth state
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -26,13 +27,13 @@ function onLogin(e) {
         auth.login (email.value, password.value )
             .then(() => window.location = 'index.html')
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                let errorMessage = error.message;
                 ui.showError(errorMessage);
             })
     }
 }
 
-function createAccount() {
+function createAccount(e) {
+    e.returnValue = false;
     window.location = 'register.html';
 }
