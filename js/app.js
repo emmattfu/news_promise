@@ -82,7 +82,9 @@ function onSearch(e) {
           // Если по данному запросу новостей не найдено то выводим соответственное сообщение
           if (data.totalResults === 0) ui.showInfo("По вашему запросу новостей не найдено!");
           // перебираем новости из поля articles в объекте response
-          data.articles.forEach(news => ui.addNews(news));
+          data.articles.forEach((news, index) => ui.addNews(news, index));
+          // сохраняем новости в хранилище news-store
+          newsStore.setNews(data.articles);
       })
       .catch(err => ui.showError(err));
 }
@@ -96,7 +98,9 @@ function onChangeSource(e) {
             // Удаляем разметку из контейнера
             ui.clearContainer();
             // перебираем новости из поля articles в объекте response
-            data.articles.forEach(news => ui.addNews(news));
+            data.articles.forEach((news, index) => ui.addNews(news, index));
+            // сохраняем новости в хранилище news-store
+            newsStore.setNews(data.articles);
         })
         .catch(err => ui.showError(err));
 }
@@ -110,7 +114,9 @@ function onChangeCategory(e) {
             // Удаляем разметку из контейнера
             ui.clearContainer();
             // перебираем новости из поля articles в объекте response
-            data.articles.forEach(news => ui.addNews(news));
+            data.articles.forEach((news, index) => ui.addNews(news, index));
+            // сохраняем новости в хранилище news-store
+            newsStore.setNews(data.articles);
         })
         .catch(() => ui.showInfo(`Новости по категории ${selectCategory.value} по стране ${select.value} не найдены`))
 }
@@ -127,11 +133,10 @@ function addFavorite(e) {
         const oneNews = newsStore.getNews()[index];
         news.addFavoriteNews(oneNews)
             .then(data => {
-                // вывести сообщение что новость добавлена успешно
-                console.log(data);
+                M.toast({html: 'News added to your favorites!'})
             })
             .catch(err => {
-                console.log(err);
+                M.toast({html:'Ops, try again later'})
             })
     }
 }

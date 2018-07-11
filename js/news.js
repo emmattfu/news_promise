@@ -21,4 +21,13 @@ class favoriteNews {
         })
     }
 
+    removeFavoriteNews(id) {
+        return new Promise((resolve, reject) => {
+            this.db.collection(this.collectionName).doc(id).delete().then(function() {
+                M.toast({html: 'News successfully deleted!'})
+            }).catch(function(error) {
+                M.toast({html:'Ops, try again later'})
+            });
+        })
+    }
 }

@@ -8,5 +8,29 @@ const auth = new Auth();
 const news = new favoriteNews();
 // init news store
 const newsStore = NewsStore.getInstance();
+const newsContainer = document.querySelector('.news-container');
 
 // по загрузке страницы получить все новости в избранное
+window.addEventListener('load', onLoad);
+newsContainer.addEventListener('click', onRemove);
+
+
+function onLoad(e) {
+    //получить избранные новости
+    news.getFavoriteNews()
+        .then(favoriteNews => {
+          favoriteNews.forEach(doc => {
+              ui.addFavoriteNews(doc.data(), doc.id);
+          })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
+function onRemove(e) {
+    if (e.target.classList.contains('remove-favorite')) {
+        const id = e.target.dataset.id;
+        news.removeFavoriteNews(id);
+    }
+}
