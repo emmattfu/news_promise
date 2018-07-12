@@ -9,10 +9,12 @@ const news = new favoriteNews();
 // init news store
 const newsStore = NewsStore.getInstance();
 const newsContainer = document.querySelector('.news-container');
+const logout = document.querySelector('.logout');
 
 // по загрузке страницы получить все новости в избранное
 window.addEventListener('load', onLoad);
 newsContainer.addEventListener('click', onRemove);
+logout.addEventListener('click', onLogout);
 
 
 function onLoad(e) {
@@ -31,6 +33,14 @@ function onLoad(e) {
 function onRemove(e) {
     if (e.target.classList.contains('remove-favorite')) {
         const id = e.target.dataset.id;
+        const parent = e.target.closest('.col');
         news.removeFavoriteNews(id);
+        ui.removeNews(parent)
     }
+}
+
+function onLogout() {
+    auth.logout()
+        .then(() => window.location = 'login.html')
+        .catch((err) => console.log(err))
 }

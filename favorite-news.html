@@ -15,15 +15,25 @@
 
 <body>
 <header id="header">
-    <div class="container">
+    <div class="container-fluid">
         <div class="header-content">
-            <p class="header-text">The hottest news are here!</p>
-            <button class="btn waves-effect waves-light logout">logout</button>
+            <div class="navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper">
+                        <a href="index.html" class="brand-logo">News App</a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a href="index.html">News</a></li>
+                            <li><a href="favorite-news.html">Favorite news</a></li>
+                            <li><a href="#" class="logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
     </div>
 </header>
 <div class="container">
-    <h2>Favorite news</h2>
+    <h2 class="favorite-news">Favorite news</h2>
 </div>
 <div class="news-container">
     <div class="container">
@@ -50,6 +60,8 @@
 <script src="js/news.js"></script>
 <script src="js/news-store.js"></script>
 <script src="js/favorite-news.js"></script>
+
+
 
 </body>
 </html>

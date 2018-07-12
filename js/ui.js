@@ -25,6 +25,10 @@ class UI {
     this.container.insertAdjacentHTML("beforeend", template);
   }
 
+  removeNews(element) {
+      element.remove();
+  }
+
     addFavoriteNews(news, id) {
         const template = `
       <div class="col s12 m6">
@@ -102,20 +106,5 @@ class UI {
 
     this.container.insertAdjacentHTML("beforeend", template);
   }
-
-    showErrorOnFavorite(err) {
-        this.clearContainer();
-
-        const template = `
-      <div class="card red lighten-1">
-        <div class="card-content">
-            <span class="card-title">Error:</span>
-            <p>${err}</p>
-        </div>
-      </div>
-    `;
-
-        this.container.insertAdjacentHTML("afterbegin", template);
-    }
 
 }

@@ -4,16 +4,25 @@
     box-sizing: border-box;
 }
 
+
+#header {
+    margin-bottom: 30px;
+}
+
 .header-text {
     font-size: 50px;
 }
 
 .header-content {
-    padding: 0 0.75rem;
     display: flex;
     justify-content: space-between;
 }
 
-.logout {
-    align-self: center;
+nav .nav-wrapper {
+    max-width: 1264px;
+    margin: 0 auto ;
+}
+
+.favorite-news {
+    padding-left: 8px;
 }
