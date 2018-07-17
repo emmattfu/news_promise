@@ -23,6 +23,12 @@ nav .nav-wrapper {
     margin: 0 auto ;
 }
 
+.my-toast {
+    background-color: #000;
+    color: #ffffff;
+    padding: 15px;
+}
+
 .favorite-news {
     padding-left: 8px;
 }

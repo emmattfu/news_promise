@@ -133,10 +133,10 @@ function addFavorite(e) {
         const oneNews = newsStore.getNews()[index];
         news.addFavoriteNews(oneNews)
             .then(data => {
-                M.toast({html: 'News added to your favorites!'})
+                news.createMessage('News added to your favorite!')
             })
             .catch(err => {
-                M.toast({html:'Ops, try again later'})
+                news.createMessage('Ops, try again later')
             })
     }
 }
