@@ -88,17 +88,16 @@ class favoriteNews {
                 // проверяем если opacity > 0 то мы продолжаем делать requestAnimationFrame
                 if (parseFloat(element.style.opacity) <= 0) {
                     cancelAnimationFrame(raf);
+
+                    // удаляэм элемент из разметки после изчезновения его с монитора через пол секунды
+                    setTimeout(() => {
+                        let element = document.querySelector('.my-toast');
+                        element.remove();
+                    }, 500)
                 }
             }
-
             animateAction();
         }, 3000);
-
-
-        setTimeout(() => {
-            let element = document.querySelector('.my-toast');
-            element.remove();
-        }, 5000)
     }
 
 }

@@ -27,6 +27,31 @@ nav .nav-wrapper {
     background-color: #000;
     color: #ffffff;
     padding: 15px;
+    animation-name: up;
+    animation-duration: 2s;
+}
+
+.template {
+    animation-name: upnews;
+    animation-duration: 2s;
+}
+
+@keyframes upnews {
+    from {
+        transform: translateY(30px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes up {
+    from {
+        transform: translateY(10px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 .favorite-news {

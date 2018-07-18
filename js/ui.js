@@ -4,7 +4,7 @@ class UI {
   }
   addNews(news, index) {
     const template = `
-      <div class="col s12 m6">
+      <div class="col s12 m6 template">
           <div class="card left-align">
               <div class="card-image waves-effect waves-block waves-light">
                   <img class="activator" src="${news.urlToImage}">
@@ -22,8 +22,42 @@ class UI {
       </div>
     `;
 
+
+
     this.container.insertAdjacentHTML("beforeend", template);
+
+      const divs = document.querySelectorAll(".template");
+
+      // выводим новости через пол секунды одна за одной
+      let delay = 0;
+      divs.forEach(div => {
+          div.style.opacity = 0;
+          setTimeout(() => {
+              ui.animationNews(div);
+          }, delay);
+          delay += 500;
+      });
+
+
   }
+
+    animationNews(element) {
+        // шаг изменения своства
+        let step = 0;
+
+        function animateAction(time) {
+            step += 0.02;
+            element.style.opacity = step;
+            const raf = requestAnimationFrame(animateAction);
+            // проверяем если opacity < 1 то мы продолжаем делать requestAnimationFrame
+            if (parseFloat(element.style.opacity) >= 1) {
+                cancelAnimationFrame(raf);
+            }
+        }
+
+        animateAction();
+    }
+
 
   removeNews(element) {
       element.remove();
@@ -31,7 +65,7 @@ class UI {
 
     addFavoriteNews(news, id) {
         const template = `
-      <div class="col s12 m6">
+      <div class="col s12 m6 template">
           <div class="card left-align">
               <div class="card-image waves-effect waves-block waves-light">
                   <img class="activator" src="${news.urlToImage}">
@@ -50,6 +84,18 @@ class UI {
     `;
 
         this.container.insertAdjacentHTML("beforeend", template);
+
+        const divs = document.querySelectorAll(".template");
+
+        // выводим новости через пол секунды одна за одной
+        let delay = 0;
+        divs.forEach(div => {
+            div.style.opacity = 0;
+            setTimeout(() => {
+                ui.animationNews(div);
+            }, delay);
+            delay += 500;
+        });
     }
 
   clearContainer() {
