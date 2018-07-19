@@ -25,7 +25,11 @@ class UI {
 
 
     this.container.insertAdjacentHTML("beforeend", template);
+    ui.showNews();
 
+  }
+
+  showNews() {
       const divs = document.querySelectorAll(".template");
 
       // выводим новости через пол секунды одна за одной
@@ -37,8 +41,6 @@ class UI {
           }, delay);
           delay += 500;
       });
-
-
   }
 
     animationNews(element) {
